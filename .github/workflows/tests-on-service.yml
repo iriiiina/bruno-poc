@@ -34,6 +34,11 @@ jobs:
         run: |
           npm install -g @usebruno/cli
 
+      # Move to collections folder
+      - name: Move to httpbin.org
+        run: |
+          cd httpbin.org
+
        # Runs the Bruno API request
       - name: Run bruno’s all API request
         run: |
