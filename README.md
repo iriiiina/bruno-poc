@@ -1,5 +1,5 @@
 # Bruno POC
-[Bruno](https://www.usebruno.com/) collection for investigating its features in an open-source package.
+[Bruno](https://www.usebruno.com/) collection for investigating its features in an open-source package. Collection is located in the [httpbin.org](/httpbin.org/) folder.
   
 ## Application Under Test
 [https://httpbin.org](https://httpbin.org) is used for testing different scenarios, such as authentication methods, status codes, HTTP methods, etc.
@@ -10,7 +10,7 @@
   ```shell
   git clone git@gitlab.nortal.com:nortal-test-automation/bruno-poc.git
   ```
-* Open Bruno, click on the 'Open Collection' button on the start page, and open the cloned Git folder
+* Open Bruno, click on the 'Open Collection' button on the start page, and open [httpbin.org](/httpbin.org/) folder in the cloned Git repo
 * You are now ready to run existing requests or add new ones to the collection!
 
 ## Contributing
