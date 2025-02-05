@@ -13,6 +13,19 @@
 * Open Bruno, click on the 'Open Collection' button on the start page, and open [httpbin.org](/httpbin.org/) folder in the cloned Git repo
 * You are now ready to run existing requests or add new ones to the collection!
 
+## Run Tests In CLI
+To install `bru` tool see official documentation [Bruno CLI](https://docs.usebruno.com/bru-cli/overview).
+
+Run following command in `httpbin.org/` folder:
+```shell
+bru run --env service
+```
+
+To generate HTML report use `--reporter-html` flag:
+```shell
+bru run --env service --reporter-html results.html
+```
+
 ## Contributing
 * If you wish to commit your changes, please use [Pull Requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 * Follow the same folder structure and terminology as seen on the [https://httpbin.org](https://httpbin.org) page
