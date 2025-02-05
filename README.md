@@ -22,7 +22,7 @@ bru run --env service
 ```
 
 ## Results and HTML Report
-The final HTML report is located in the collection folder and can also be viewed in a browser here: [https://iriiiina.github.io/bruno-poc/report.html](https://iriiiina.github.io/bruno-poc/report.html).
+The final HTML report is located in the collection folder and can also be viewed in a browser here: [https://iriiiina.github.io/bruno-poc/httpbin.org/report.html](https://iriiiina.github.io/bruno-poc/httpbin.org/report.html).
 
 To generate the HTML report, run the following command in the `httpbin.org/` folder:
 ```shell
