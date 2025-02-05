@@ -403,7 +403,7 @@
           "status": 200,
           "statusText": "OK",
           "headers": {
-            "date": "Wed, 05 Feb 2025 14:24:15 GMT",
+            "date": "Wed, 05 Feb 2025 14:45:20 GMT",
             "content-type": "application/json",
             "content-length": "53",
             "connection": "keep-alive",
@@ -415,12 +415,12 @@
             "authenticated": true,
             "token": "jwt-token"
           },
-          "responseTime": 1079
+          "responseTime": 657
         },
         "error": null,
         "assertionResults": [
           {
-            "uid": "nwweAwChI1jtM8sz3Jee3",
+            "uid": "oXJJsSkKLHSSXyFJGSJZ8",
             "lhsExpr": "res.body.token",
             "rhsExpr": "eq {{JWT}}",
             "rhsOperand": "{{JWT}}",
@@ -429,7 +429,7 @@
           }
         ],
         "testResults": [],
-        "runtime": 1.095848208,
+        "runtime": 0.675809375,
         "suitename": "Auth/get-bearer",
         "iterationIndex": 0
       },
@@ -446,22 +446,22 @@
           "status": 405,
           "statusText": "METHOD NOT ALLOWED",
           "headers": {
-            "date": "Wed, 05 Feb 2025 14:24:15 GMT",
+            "date": "Wed, 05 Feb 2025 14:45:21 GMT",
             "content-type": "text/html",
             "content-length": "178",
             "connection": "keep-alive",
             "server": "gunicorn/19.9.0",
-            "allow": "DELETE, OPTIONS",
+            "allow": "OPTIONS, DELETE",
             "access-control-allow-origin": "*",
             "access-control-allow-credentials": "true"
           },
           "data": "response content redacted",
-          "responseTime": 136
+          "responseTime": 1186
         },
         "error": null,
         "assertionResults": [
           {
-            "uid": "LYUKaZlSiiIvenE6Pq2eD",
+            "uid": "rEJjviudi-IA0OloxBwoI",
             "lhsExpr": "res.status",
             "rhsExpr": "eq 405",
             "rhsOperand": "405",
@@ -470,7 +470,7 @@
           }
         ],
         "testResults": [],
-        "runtime": 0.142568458,
+        "runtime": 1.193254458,
         "suitename": "HTTP Methods/get-delete",
         "iterationIndex": 0
       },
@@ -489,7 +489,7 @@
           "status": 200,
           "statusText": "OK",
           "headers": {
-            "date": "Wed, 05 Feb 2025 14:24:15 GMT",
+            "date": "Wed, 05 Feb 2025 14:45:21 GMT",
             "content-type": "text/html; charset=utf-8",
             "content-length": "0",
             "connection": "keep-alive",
@@ -498,12 +498,12 @@
             "access-control-allow-credentials": "true"
           },
           "data": "response content redacted",
-          "responseTime": 133
+          "responseTime": 150
         },
         "error": null,
         "assertionResults": [
           {
-            "uid": "z6tbDkrZfp3705hR8FKL1",
+            "uid": "SNXQ83SddRVIWQwKpk8n9",
             "lhsExpr": "res.status",
             "rhsExpr": "eq 200",
             "rhsOperand": "200",
@@ -512,7 +512,7 @@
           }
         ],
         "testResults": [],
-        "runtime": 0.136598666,
+        "runtime": 0.154045958,
         "suitename": "Status Codes/get-status-200",
         "iterationIndex": 0
       },
@@ -529,7 +529,7 @@
           "status": 500,
           "statusText": "INTERNAL SERVER ERROR",
           "headers": {
-            "date": "Wed, 05 Feb 2025 14:24:17 GMT",
+            "date": "Wed, 05 Feb 2025 14:45:22 GMT",
             "content-type": "text/html; charset=utf-8",
             "content-length": "0",
             "connection": "keep-alive",
@@ -538,12 +538,12 @@
             "access-control-allow-credentials": "true"
           },
           "data": "response content redacted",
-          "responseTime": 1535
+          "responseTime": 540
         },
         "error": null,
         "assertionResults": [],
         "testResults": [],
-        "runtime": 1.538318667,
+        "runtime": 0.542525792,
         "suitename": "Status Codes/get-status-500",
         "iterationIndex": 0
       }
