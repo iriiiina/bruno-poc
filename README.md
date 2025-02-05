@@ -21,9 +21,12 @@ Run following command in `httpbin.org/` folder:
 bru run --env service
 ```
 
-To generate HTML report use `--reporter-html` flag:
+## Results and HTML Report
+Final HTML report is located at [reports/](reports/) folder.
+
+To generate HTML report run following command in `httpbin.org/` folder:
 ```shell
-bru run --env service --reporter-html results.html
+bru run --env service --reporter-html ../reports/results.html
 ```
 
 ## Contributing
