@@ -28,8 +28,6 @@ jobs:
       # Installtion of Node
       - name: Install Node
         uses: actions/checkout@v3
-        with: 
-              node_version: 'repository'
 
       # Installtion of bruno cli
       - name: Install BrunoCLI
