@@ -377,12 +377,12 @@
   {
     "iterationIndex": 0,
     "summary": {
-      "totalRequests": 4,
-      "passedRequests": 4,
+      "totalRequests": 5,
+      "passedRequests": 5,
       "failedRequests": 0,
-      "totalAssertions": 3,
+      "totalAssertions": 4,
       "passedAssertions": 3,
-      "failedAssertions": 0,
+      "failedAssertions": 1,
       "totalTests": 0,
       "passedTests": 0,
       "failedTests": 0
@@ -403,7 +403,7 @@
           "status": 200,
           "statusText": "OK",
           "headers": {
-            "date": "Wed, 05 Feb 2025 13:43:16 GMT",
+            "date": "Wed, 05 Feb 2025 14:16:51 GMT",
             "content-type": "application/json",
             "content-length": "53",
             "connection": "keep-alive",
@@ -415,12 +415,12 @@
             "authenticated": true,
             "token": "jwt-token"
           },
-          "responseTime": 745
+          "responseTime": 664
         },
         "error": null,
         "assertionResults": [
           {
-            "uid": "jIPri24KY7pM7-TH4tBqw",
+            "uid": "xvGukW0W6SOwzUwDjIYDx",
             "lhsExpr": "res.body.token",
             "rhsExpr": "eq {{JWT}}",
             "rhsOperand": "{{JWT}}",
@@ -429,8 +429,49 @@
           }
         ],
         "testResults": [],
-        "runtime": 0.762974167,
+        "runtime": 0.741359167,
         "suitename": "Auth/get-bearer",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Failing Assertions/get-status-404.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/status/404",
+          "headers": {}
+        },
+        "response": {
+          "status": 404,
+          "statusText": "NOT FOUND",
+          "headers": {
+            "date": "Wed, 05 Feb 2025 14:16:51 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 129
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "9t8K173hjpG8ky1dOe0np",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 200",
+            "rhsOperand": "200",
+            "operator": "eq",
+            "status": "fail",
+            "error": "expected 404 to equal 200"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.138533041,
+        "suitename": "Failing Assertions/get-status-404",
         "iterationIndex": 0
       },
       {
@@ -446,22 +487,22 @@
           "status": 405,
           "statusText": "METHOD NOT ALLOWED",
           "headers": {
-            "date": "Wed, 05 Feb 2025 13:43:17 GMT",
+            "date": "Wed, 05 Feb 2025 14:16:51 GMT",
             "content-type": "text/html",
             "content-length": "178",
             "connection": "keep-alive",
             "server": "gunicorn/19.9.0",
-            "allow": "OPTIONS, DELETE",
+            "allow": "DELETE, OPTIONS",
             "access-control-allow-origin": "*",
             "access-control-allow-credentials": "true"
           },
           "data": "response content redacted",
-          "responseTime": 1224
+          "responseTime": 132
         },
         "error": null,
         "assertionResults": [
           {
-            "uid": "ZuJftnaGIpcvWh81uDsiM",
+            "uid": "1fhA9fely95r5TR_3spo4",
             "lhsExpr": "res.status",
             "rhsExpr": "eq 405",
             "rhsOperand": "405",
@@ -470,7 +511,7 @@
           }
         ],
         "testResults": [],
-        "runtime": 1.231548,
+        "runtime": 0.135085375,
         "suitename": "HTTP Methods/get-delete",
         "iterationIndex": 0
       },
@@ -489,7 +530,7 @@
           "status": 200,
           "statusText": "OK",
           "headers": {
-            "date": "Wed, 05 Feb 2025 13:43:17 GMT",
+            "date": "Wed, 05 Feb 2025 14:16:53 GMT",
             "content-type": "text/html; charset=utf-8",
             "content-length": "0",
             "connection": "keep-alive",
@@ -498,12 +539,12 @@
             "access-control-allow-credentials": "true"
           },
           "data": "response content redacted",
-          "responseTime": 343
+          "responseTime": 1458
         },
         "error": null,
         "assertionResults": [
           {
-            "uid": "6jGEyDJWxYCreH_w5s2m3",
+            "uid": "qKpkFe8qO2dOf1jziEcxY",
             "lhsExpr": "res.status",
             "rhsExpr": "eq 200",
             "rhsOperand": "200",
@@ -512,7 +553,7 @@
           }
         ],
         "testResults": [],
-        "runtime": 0.347545708,
+        "runtime": 1.461438083,
         "suitename": "Status Codes/get-status-200",
         "iterationIndex": 0
       },
@@ -529,7 +570,7 @@
           "status": 500,
           "statusText": "INTERNAL SERVER ERROR",
           "headers": {
-            "date": "Wed, 05 Feb 2025 13:43:19 GMT",
+            "date": "Wed, 05 Feb 2025 14:16:53 GMT",
             "content-type": "text/html; charset=utf-8",
             "content-length": "0",
             "connection": "keep-alive",
@@ -538,12 +579,12 @@
             "access-control-allow-credentials": "true"
           },
           "data": "response content redacted",
-          "responseTime": 1214
+          "responseTime": 127
         },
         "error": null,
         "assertionResults": [],
         "testResults": [],
-        "runtime": 1.217416083,
+        "runtime": 0.130490709,
         "suitename": "Status Codes/get-status-500",
         "iterationIndex": 0
       }

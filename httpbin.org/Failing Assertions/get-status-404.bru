@@ -1,0 +1,15 @@
+meta {
+  name: get-status-404
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{URL}}/status/404
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
