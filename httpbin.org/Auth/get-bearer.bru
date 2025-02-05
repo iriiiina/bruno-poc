@@ -1,0 +1,19 @@
+meta {
+  name: get-bearer
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{URL}}/bearer
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{JWT}}
+}
+
+assert {
+  res.body.token: eq {{JWT}}
+}

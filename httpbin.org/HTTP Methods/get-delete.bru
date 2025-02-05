@@ -1,0 +1,15 @@
+meta {
+  name: get-delete
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{URL}}/delete
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 405
+}

@@ -1,0 +1,15 @@
+meta {
+  name: get-status-200
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{URL}}/status/200
+  body: none
+  auth: bearer
+}
+
+assert {
+  res.status: eq 200
+}
