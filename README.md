@@ -32,7 +32,7 @@ bru run --env service --reporter-html report.html
 ## Contributing
 * If you wish to commit your changes, please use [Pull Requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 * Follow the same folder structure and terminology as seen on the [https://httpbin.org](https://httpbin.org) page
-* Generate and commit the HTML report making all your changes
+* Generate and commit the HTML report after making all your changes
 * Follow best practices for [writing commit messages](https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53)
 
 ## Project Status
