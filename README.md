@@ -14,9 +14,9 @@
 * You are now ready to run existing requests or add new ones to the collection!
 
 ## Run Tests In CLI
-To install `bru` tool see official documentation [Bruno CLI](https://docs.usebruno.com/bru-cli/overview).
+You need to install `bru` tool to run tests in CLI - see official documentation [Bruno CLI](https://docs.usebruno.com/bru-cli/overview) for details.
 
-Run following command in `httpbin.org/` folder:
+After `bro` is installed, run following command in `httpbin.org/` folder:
 ```shell
 bru run --env service
 ```
