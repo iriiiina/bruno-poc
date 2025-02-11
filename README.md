@@ -16,7 +16,7 @@
 ## Run Tests In CLI
 You need to install `bru` tool to run tests in CLI - see official documentation [Bruno CLI](https://docs.usebruno.com/bru-cli/overview) for details.
 
-After `bro` is installed, run following command in `httpbin.org/` folder:
+After `bru` is installed, run following command in `httpbin.org/` folder:
 ```shell
 bru run --env service
 ```
