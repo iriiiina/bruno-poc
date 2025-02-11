@@ -8,7 +8,7 @@
 * Download and install [Bruno](https://www.usebruno.com/)
 * Clone this Git repository to your machine:
   ```shell
-  git clone git@gitlab.nortal.com:nortal-test-automation/bruno-poc.git
+  git clone https://github.com/iriiiina/bruno-poc.git
   ```
 * Open Bruno, click on the 'Open Collection' button on the start page, and open [httpbin.org](/httpbin.org/) folder in the cloned Git repo
 * You are now ready to run existing requests or add new ones to the collection!
