@@ -377,12 +377,12 @@
   {
     "iterationIndex": 0,
     "summary": {
-      "totalRequests": 4,
-      "passedRequests": 4,
+      "totalRequests": 43,
+      "passedRequests": 43,
       "failedRequests": 0,
-      "totalAssertions": 3,
-      "passedAssertions": 3,
-      "failedAssertions": 0,
+      "totalAssertions": 48,
+      "passedAssertions": 44,
+      "failedAssertions": 4,
       "totalTests": 0,
       "passedTests": 0,
       "failedTests": 0
@@ -390,7 +390,7 @@
     "results": [
       {
         "test": {
-          "filename": "Auth/get-bearer.bru"
+          "filename": "Auth/bearer.bru"
         },
         "request": {
           "method": "GET",
@@ -403,7 +403,7 @@
           "status": 200,
           "statusText": "OK",
           "headers": {
-            "date": "Wed, 05 Feb 2025 14:45:20 GMT",
+            "date": "Fri, 14 Feb 2025 20:58:57 GMT",
             "content-type": "application/json",
             "content-length": "53",
             "connection": "keep-alive",
@@ -415,12 +415,12 @@
             "authenticated": true,
             "token": "jwt-token"
           },
-          "responseTime": 657
+          "responseTime": 1216
         },
         "error": null,
         "assertionResults": [
           {
-            "uid": "oXJJsSkKLHSSXyFJGSJZ8",
+            "uid": "2TyuZk-KjjtdtLIbd1SnK",
             "lhsExpr": "res.body.token",
             "rhsExpr": "eq {{JWT}}",
             "rhsOperand": "{{JWT}}",
@@ -429,8 +429,218 @@
           }
         ],
         "testResults": [],
-        "runtime": 0.675809375,
-        "suitename": "Auth/get-bearer",
+        "runtime": 1.294808416,
+        "suitename": "Auth/bearer",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Auth/basic-auth.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/basic-auth/user/password",
+          "headers": {
+            "Authorization": "Basic dXNlcjpwYXNzd29yZA=="
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:58:58 GMT",
+            "content-type": "application/json",
+            "content-length": "47",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": {
+            "authenticated": true,
+            "user": "user"
+          },
+          "responseTime": 137
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "pQsZCWTIjBFZyANLKPJHt",
+            "lhsExpr": "res.body.authenticated",
+            "rhsExpr": "isTruthy",
+            "rhsOperand": "",
+            "operator": "isTruthy",
+            "status": "pass"
+          },
+          {
+            "uid": "7t8D2G4ao_A2OXHjCKBbK",
+            "lhsExpr": "res.body.user",
+            "rhsExpr": "eq {{USERNAME}}",
+            "rhsOperand": "{{USERNAME}}",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.147536958,
+        "suitename": "Auth/basic-auth",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Auth/digest-auth.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/digest-auth/auth/user/password",
+          "headers": {}
+        },
+        "response": {
+          "status": 401,
+          "statusText": "UNAUTHORIZED",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:58:58 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "www-authenticate": "Digest realm=\"me@kennethreitz.com\", nonce=\"d91a777be2514e68502d64c1f2ffbca0\", qop=\"auth\", opaque=\"a321aa98c8e4df32028c04a88e3389c2\", algorithm=MD5, stale=FALSE",
+            "set-cookie": "stale_after=never; Path=/, fake=fake_value; Path=/",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 308
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "YRP51NIire8zNXOGoUAyb",
+            "lhsExpr": "res.body.authenticated",
+            "rhsExpr": "isTruthy",
+            "rhsOperand": "",
+            "operator": "isTruthy",
+            "status": "fail",
+            "error": "expected undefined to be true"
+          },
+          {
+            "uid": "vBdyligoKGiCw7rNKJlVm",
+            "lhsExpr": "res.body.user",
+            "rhsExpr": "eq {{USERNAME}}",
+            "rhsOperand": "{{USERNAME}}",
+            "operator": "eq",
+            "status": "fail",
+            "error": "expected undefined to equal 'user'"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.317469292,
+        "suitename": "Auth/digest-auth",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Auth/digest-auth-algorithm.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/digest-auth/auth/user/password/MD5",
+          "headers": {}
+        },
+        "response": {
+          "status": 401,
+          "statusText": "UNAUTHORIZED",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:58:59 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "www-authenticate": "Digest realm=\"me@kennethreitz.com\", nonce=\"278a317820775ad5a633640ab3cb728a\", qop=\"auth\", opaque=\"08a4d2b865dfb368a897ad05163c694d\", algorithm=MD5, stale=FALSE",
+            "set-cookie": "stale_after=never; Path=/, fake=fake_value; Path=/",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 1086
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "2aE30cyQHF2QgI3nzocHC",
+            "lhsExpr": "res.body.authenticated",
+            "rhsExpr": "isTruthy",
+            "rhsOperand": "",
+            "operator": "isTruthy",
+            "status": "fail",
+            "error": "expected undefined to be true"
+          },
+          {
+            "uid": "vlc3kIL2Nq4HyI4hcfjw1",
+            "lhsExpr": "res.body.user",
+            "rhsExpr": "eq {{USERNAME}}",
+            "rhsOperand": "{{USERNAME}}",
+            "operator": "eq",
+            "status": "fail",
+            "error": "expected undefined to equal 'user'"
+          }
+        ],
+        "testResults": [],
+        "runtime": 1.091348584,
+        "suitename": "Auth/digest-auth-algorithm",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Auth/hidden-basic-auth.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/hidden-basic-auth/user/password",
+          "headers": {
+            "Authorization": "Basic dXNlcjpwYXNzd29yZA=="
+          }
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:58:59 GMT",
+            "content-type": "application/json",
+            "content-length": "47",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": {
+            "authenticated": true,
+            "user": "user"
+          },
+          "responseTime": 421
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "sGkYcy7ik31lG5-AgpXSt",
+            "lhsExpr": "res.body.authenticated",
+            "rhsExpr": "isTruthy",
+            "rhsOperand": "",
+            "operator": "isTruthy",
+            "status": "pass"
+          },
+          {
+            "uid": "kf2ZzsynNPMiv9ClD3AJF",
+            "lhsExpr": "res.body.user",
+            "rhsExpr": "eq {{USERNAME}}",
+            "rhsOperand": "{{USERNAME}}",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.424374334,
+        "suitename": "Auth/hidden-basic-auth",
         "iterationIndex": 0
       },
       {
@@ -446,22 +656,22 @@
           "status": 405,
           "statusText": "METHOD NOT ALLOWED",
           "headers": {
-            "date": "Wed, 05 Feb 2025 14:45:21 GMT",
+            "date": "Fri, 14 Feb 2025 20:59:00 GMT",
             "content-type": "text/html",
             "content-length": "178",
             "connection": "keep-alive",
             "server": "gunicorn/19.9.0",
-            "allow": "OPTIONS, DELETE",
+            "allow": "DELETE, OPTIONS",
             "access-control-allow-origin": "*",
             "access-control-allow-credentials": "true"
           },
           "data": "response content redacted",
-          "responseTime": 1186
+          "responseTime": 698
         },
         "error": null,
         "assertionResults": [
           {
-            "uid": "rEJjviudi-IA0OloxBwoI",
+            "uid": "_ln2BYsJGc7t6LtWKn4ER",
             "lhsExpr": "res.status",
             "rhsExpr": "eq 405",
             "rhsOperand": "405",
@@ -470,40 +680,54 @@
           }
         ],
         "testResults": [],
-        "runtime": 1.193254458,
+        "runtime": 0.700832667,
         "suitename": "HTTP Methods/get-delete",
         "iterationIndex": 0
       },
       {
         "test": {
-          "filename": "Status Codes/get-status-200.bru"
+          "filename": "HTTP Methods/delete.bru"
         },
         "request": {
-          "method": "GET",
-          "url": "https://httpbin.org/status/200",
-          "headers": {
-            "Authorization": "Bearer undefined"
-          }
+          "method": "DELETE",
+          "url": "https://httpbin.org/delete",
+          "headers": {}
         },
         "response": {
           "status": 200,
           "statusText": "OK",
           "headers": {
-            "date": "Wed, 05 Feb 2025 14:45:21 GMT",
-            "content-type": "text/html; charset=utf-8",
-            "content-length": "0",
+            "date": "Fri, 14 Feb 2025 20:59:00 GMT",
+            "content-type": "application/json",
+            "content-length": "460",
             "connection": "keep-alive",
             "server": "gunicorn/19.9.0",
             "access-control-allow-origin": "*",
             "access-control-allow-credentials": "true"
           },
-          "data": "response content redacted",
-          "responseTime": 150
+          "data": {
+            "args": {},
+            "data": "",
+            "files": {},
+            "form": {},
+            "headers": {
+              "Accept": "application/json, text/plain, */*",
+              "Accept-Encoding": "gzip, compress, deflate, br",
+              "Host": "httpbin.org",
+              "Request-Start-Time": "1739566740514",
+              "User-Agent": "bruno-runtime/1.38.3",
+              "X-Amzn-Trace-Id": "Root=1-67afae94-1419f5483da45ea46d6fce74"
+            },
+            "json": null,
+            "origin": "90.191.167.195",
+            "url": "https://httpbin.org/delete"
+          },
+          "responseTime": 284
         },
         "error": null,
         "assertionResults": [
           {
-            "uid": "SNXQ83SddRVIWQwKpk8n9",
+            "uid": "pn5RSj6uJEZ5CqCyupLES",
             "lhsExpr": "res.status",
             "rhsExpr": "eq 200",
             "rhsOperand": "200",
@@ -512,13 +736,913 @@
           }
         ],
         "testResults": [],
-        "runtime": 0.154045958,
-        "suitename": "Status Codes/get-status-200",
+        "runtime": 0.287064584,
+        "suitename": "HTTP Methods/delete",
         "iterationIndex": 0
       },
       {
         "test": {
-          "filename": "Status Codes/get-status-500.bru"
+          "filename": "HTTP Methods/patch.bru"
+        },
+        "request": {
+          "method": "PATCH",
+          "url": "https://httpbin.org/patch",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:01 GMT",
+            "content-type": "application/json",
+            "content-length": "545",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": {
+            "args": {},
+            "data": "",
+            "files": {},
+            "form": {},
+            "headers": {
+              "Accept": "application/json, text/plain, */*",
+              "Accept-Encoding": "gzip, compress, deflate, br",
+              "Content-Length": "0",
+              "Content-Type": "application/x-www-form-urlencoded",
+              "Host": "httpbin.org",
+              "Request-Start-Time": "1739566740801",
+              "User-Agent": "bruno-runtime/1.38.3",
+              "X-Amzn-Trace-Id": "Root=1-67afae94-13eeb7ab4641401f6afc708b"
+            },
+            "json": null,
+            "origin": "90.191.167.195",
+            "url": "https://httpbin.org/patch"
+          },
+          "responseTime": 939
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "xJpsYKSMoIrVfdKGMco1j",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 200",
+            "rhsOperand": "200",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.941422708,
+        "suitename": "HTTP Methods/patch",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "HTTP Methods/post.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "https://httpbin.org/post",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:01 GMT",
+            "content-type": "application/json",
+            "content-length": "544",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": {
+            "args": {},
+            "data": "",
+            "files": {},
+            "form": {},
+            "headers": {
+              "Accept": "application/json, text/plain, */*",
+              "Accept-Encoding": "gzip, compress, deflate, br",
+              "Content-Length": "0",
+              "Content-Type": "application/x-www-form-urlencoded",
+              "Host": "httpbin.org",
+              "Request-Start-Time": "1739566741745",
+              "User-Agent": "bruno-runtime/1.38.3",
+              "X-Amzn-Trace-Id": "Root=1-67afae95-43a15e180f53d9445c06f39d"
+            },
+            "json": null,
+            "origin": "90.191.167.195",
+            "url": "https://httpbin.org/post"
+          },
+          "responseTime": 140
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "RQ1Sz_KAmZavoQFF_b9Hn",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 200",
+            "rhsOperand": "200",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.146311125,
+        "suitename": "HTTP Methods/post",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "HTTP Methods/put.bru"
+        },
+        "request": {
+          "method": "PUT",
+          "url": "https://httpbin.org/put",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:02 GMT",
+            "content-type": "application/json",
+            "content-length": "543",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": {
+            "args": {},
+            "data": "",
+            "files": {},
+            "form": {},
+            "headers": {
+              "Accept": "application/json, text/plain, */*",
+              "Accept-Encoding": "gzip, compress, deflate, br",
+              "Content-Length": "0",
+              "Content-Type": "application/x-www-form-urlencoded",
+              "Host": "httpbin.org",
+              "Request-Start-Time": "1739566741890",
+              "User-Agent": "bruno-runtime/1.38.3",
+              "X-Amzn-Trace-Id": "Root=1-67afae96-4fd176a15692048106854d6e"
+            },
+            "json": null,
+            "origin": "90.191.167.195",
+            "url": "https://httpbin.org/put"
+          },
+          "responseTime": 866
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "oCqTnTgIZP4gY9XjUTOK4",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 200",
+            "rhsOperand": "200",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.869842583,
+        "suitename": "HTTP Methods/put",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "HTTP Methods/get.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/get",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:03 GMT",
+            "content-type": "application/json",
+            "content-length": "394",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": {
+            "args": {},
+            "headers": {
+              "Accept": "application/json, text/plain, */*",
+              "Accept-Encoding": "gzip, compress, deflate, br",
+              "Host": "httpbin.org",
+              "Request-Start-Time": "1739566742759",
+              "User-Agent": "bruno-runtime/1.38.3",
+              "X-Amzn-Trace-Id": "Root=1-67afae96-7dcee94860519f7a25427947"
+            },
+            "origin": "90.191.167.195",
+            "url": "https://httpbin.org/get"
+          },
+          "responseTime": 253
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "QR-nfAILf4aoN9FJnTOB1",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 200",
+            "rhsOperand": "200",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.255529084,
+        "suitename": "HTTP Methods/get",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Request inspection/headers.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/headers",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:05 GMT",
+            "content-type": "application/json",
+            "content-length": "311",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": {
+            "headers": {
+              "Accept": "application/json, text/plain, */*",
+              "Accept-Encoding": "gzip, compress, deflate, br",
+              "Host": "httpbin.org",
+              "Request-Start-Time": "1739566743015",
+              "User-Agent": "bruno-runtime/1.38.3",
+              "X-Amzn-Trace-Id": "Root=1-67afae97-4ed27b6941414c750503e499"
+            }
+          },
+          "responseTime": 2207
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "AN6VWcSaA4KmB7j1nE-bh",
+            "lhsExpr": "res.headers['content-type']",
+            "rhsExpr": "eq application/json",
+            "rhsOperand": "application/json",
+            "operator": "eq",
+            "status": "pass"
+          },
+          {
+            "uid": "l3NZjITgpQ0VuXVKrYLwa",
+            "lhsExpr": "res.headers['date']",
+            "rhsExpr": "isNotEmpty",
+            "rhsOperand": "",
+            "operator": "isNotEmpty",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 2.211412167,
+        "suitename": "Request inspection/headers",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Request inspection/ip.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/ip",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:05 GMT",
+            "content-type": "application/json",
+            "content-length": "33",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": {
+            "origin": "90.191.167.195"
+          },
+          "responseTime": 185
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "BKFCyEFafF-KoNO_khhuo",
+            "lhsExpr": "res.body.origin",
+            "rhsExpr": "matches ^(\\d{1,3}\\.){3}\\d{1,3}$",
+            "rhsOperand": "^(\\d{1,3}\\.){3}\\d{1,3}$",
+            "operator": "matches",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.188631834,
+        "suitename": "Request inspection/ip",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Request inspection/user-agent.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/user-agent",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:05 GMT",
+            "content-type": "application/json",
+            "content-length": "43",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": {
+            "user-agent": "bruno-runtime/1.38.3"
+          },
+          "responseTime": 136
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "mC9Pj6SFL1dxYghfn-_A8",
+            "lhsExpr": "res.body['user-agent']",
+            "rhsExpr": "isNotEmpty",
+            "rhsOperand": "",
+            "operator": "isNotEmpty",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.138885958,
+        "suitename": "Request inspection/user-agent",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Response Formats/brotli.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/brotli",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:06 GMT",
+            "content-type": "application/json",
+            "content-length": "241",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": {
+            "brotli": true,
+            "headers": {
+              "Accept": "application/json, text/plain, */*",
+              "Accept-Encoding": "gzip, compress, deflate, br",
+              "Host": "httpbin.org",
+              "Request-Start-Time": "1739566745554",
+              "User-Agent": "bruno-runtime/1.38.3",
+              "X-Amzn-Trace-Id": "Root=1-67afae99-799b12a82d1871ae7181f606"
+            },
+            "method": "GET",
+            "origin": "90.191.167.195"
+          },
+          "responseTime": 800
+        },
+        "error": null,
+        "assertionResults": [],
+        "testResults": [],
+        "runtime": 0.801291625,
+        "suitename": "Response Formats/brotli",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Response Formats/deflate.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/deflate",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:06 GMT",
+            "content-type": "application/json",
+            "content-length": "271",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": {
+            "deflated": true,
+            "headers": {
+              "Accept": "application/json, text/plain, */*",
+              "Accept-Encoding": "gzip, compress, deflate, br",
+              "Host": "httpbin.org",
+              "Request-Start-Time": "1739566746355",
+              "User-Agent": "bruno-runtime/1.38.3",
+              "X-Amzn-Trace-Id": "Root=1-67afae9a-3955b63a021936f1437f3f6f"
+            },
+            "method": "GET",
+            "origin": "90.191.167.195"
+          },
+          "responseTime": 507
+        },
+        "error": null,
+        "assertionResults": [],
+        "testResults": [],
+        "runtime": 0.508583167,
+        "suitename": "Response Formats/deflate",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Response Formats/deny.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/deny",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:07 GMT",
+            "content-type": "text/plain",
+            "content-length": "239",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "\n          .-''''''-.\n        .' _      _ '.\n       /   O      O   \\\n      :                :\n      |                |\n      :       __       :\n       \\  .-\"`  `\"-.  /\n        '.          .'\n          '-......-'\n     YOU SHOULDN'T BE HERE\n",
+          "responseTime": 134
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "u5dAeSmocLSlZ8d0Mczzu",
+            "lhsExpr": "res.headers['content-type']",
+            "rhsExpr": "eq text/plain",
+            "rhsOperand": "text/plain",
+            "operator": "eq",
+            "status": "pass"
+          },
+          {
+            "uid": "SYcy2Id8SxxsbHoHw-opX",
+            "lhsExpr": "res.body",
+            "rhsExpr": "contains YOU SHOULDN'T BE HERE",
+            "rhsOperand": "YOU SHOULDN'T BE HERE",
+            "operator": "contains",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.138169083,
+        "suitename": "Response Formats/deny",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Response Formats/encoding-utf8.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/encoding/utf8",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:07 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "14239",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 462
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "GKf7X4Td-I6IDKyKkV8_i",
+            "lhsExpr": "res.headers['content-type']",
+            "rhsExpr": "eq text/html; charset=utf-8",
+            "rhsOperand": "text/html; charset=utf-8",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.466271167,
+        "suitename": "Response Formats/encoding-utf8",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Response Formats/gzip.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/gzip",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:07 GMT",
+            "content-type": "application/json",
+            "content-length": "283",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": {
+            "gzipped": true,
+            "headers": {
+              "Accept": "application/json, text/plain, */*",
+              "Accept-Encoding": "gzip, compress, deflate, br",
+              "Host": "httpbin.org",
+              "Request-Start-Time": "1739566747470",
+              "User-Agent": "bruno-runtime/1.38.3",
+              "X-Amzn-Trace-Id": "Root=1-67afae9b-26e3f89c32c43290345d6749"
+            },
+            "method": "GET",
+            "origin": "90.191.167.195"
+          },
+          "responseTime": 252
+        },
+        "error": null,
+        "assertionResults": [],
+        "testResults": [],
+        "runtime": 0.254645958,
+        "suitename": "Response Formats/gzip",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Response Formats/html.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/html",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:07 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "3741",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 134
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "XUDSn20onk63iiu54D4if",
+            "lhsExpr": "res.headers['content-type']",
+            "rhsExpr": "eq \ttext/html; charset=utf-8",
+            "rhsOperand": "\ttext/html; charset=utf-8",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.137319417,
+        "suitename": "Response Formats/html",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Response Formats/json.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/json",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:08 GMT",
+            "content-type": "application/json",
+            "content-length": "429",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": {
+            "slideshow": {
+              "author": "Yours Truly",
+              "date": "date of publication",
+              "slides": [
+                {
+                  "title": "Wake up to WonderWidgets!",
+                  "type": "all"
+                },
+                {
+                  "items": [
+                    "Why <em>WonderWidgets</em> are great",
+                    "Who <em>buys</em> WonderWidgets"
+                  ],
+                  "title": "Overview",
+                  "type": "all"
+                }
+              ],
+              "title": "Sample Slide Show"
+            }
+          },
+          "responseTime": 136
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "2vS7Og0_9cSl_lfUPtlsY",
+            "lhsExpr": "res.headers['content-type']",
+            "rhsExpr": "eq \tapplication/json",
+            "rhsOperand": "\tapplication/json",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.140322875,
+        "suitename": "Response Formats/json",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Response Formats/robots.txt.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/robots.txt",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:08 GMT",
+            "content-type": "text/plain",
+            "content-length": "30",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "User-agent: *\nDisallow: /deny\n",
+          "responseTime": 135
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "T5RMcdYUzr__3OdWx3Kew",
+            "lhsExpr": "res.headers['content-type']",
+            "rhsExpr": "eq text/plain",
+            "rhsOperand": "text/plain",
+            "operator": "eq",
+            "status": "pass"
+          },
+          {
+            "uid": "8zjg7wVnoMpEmThilhk8W",
+            "lhsExpr": "res.body",
+            "rhsExpr": "contains User-agent: *",
+            "rhsOperand": "User-agent: *",
+            "operator": "contains",
+            "status": "pass"
+          },
+          {
+            "uid": "aBG24ipFN68sLnlFiu8Ep",
+            "lhsExpr": "res.body",
+            "rhsExpr": "contains Disallow: /deny",
+            "rhsOperand": "Disallow: /deny",
+            "operator": "contains",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.139676709,
+        "suitename": "Response Formats/robots.txt",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Response Formats/xml.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/xml",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:08 GMT",
+            "content-type": "application/xml",
+            "content-length": "522",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "<?xml version='1.0' encoding='us-ascii'?>\n\n<!--  A SAMPLE set of slides  -->\n\n<slideshow \n    title=\"Sample Slide Show\"\n    date=\"Date of publication\"\n    author=\"Yours Truly\"\n    >\n\n    <!-- TITLE SLIDE -->\n    <slide type=\"all\">\n      <title>Wake up to WonderWidgets!</title>\n    </slide>\n\n    <!-- OVERVIEW -->\n    <slide type=\"all\">\n        <title>Overview</title>\n        <item>Why <em>WonderWidgets</em> are great</item>\n        <item/>\n        <item>Who <em>buys</em> WonderWidgets</item>\n    </slide>\n\n</slideshow>",
+          "responseTime": 464
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "m1ndbsI9OjfulyrpJvPgh",
+            "lhsExpr": "res.headers['content-type']",
+            "rhsExpr": "eq application/xml",
+            "rhsOperand": "application/xml",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.466790083,
+        "suitename": "Response Formats/xml",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/get-200.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/status/200",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:08 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 133
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "i-SMOUBFkxUB89n-xQZm4",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 200",
+            "rhsOperand": "200",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.136296042,
+        "suitename": "Status Codes/get-200",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/get-300.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/status/300",
+          "headers": {}
+        },
+        "response": {
+          "status": 300,
+          "statusText": "MULTIPLE CHOICES",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:10 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 1697
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "LBHDTYDGlapAlmM3isPr8",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 300",
+            "rhsOperand": "300",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 1.7000510420000001,
+        "suitename": "Status Codes/get-300",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/get-400.bru"
+        },
+        "request": {
+          "method": "GET",
+          "url": "https://httpbin.org/status/400",
+          "headers": {}
+        },
+        "response": {
+          "status": 400,
+          "statusText": "BAD REQUEST",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:11 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 979
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "_TNXMtoYOzi4klUhRAOni",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 400",
+            "rhsOperand": "400",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.9826205,
+        "suitename": "Status Codes/get-400",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/get-500.bru"
         },
         "request": {
           "method": "GET",
@@ -529,7 +1653,7 @@
           "status": 500,
           "statusText": "INTERNAL SERVER ERROR",
           "headers": {
-            "date": "Wed, 05 Feb 2025 14:45:22 GMT",
+            "date": "Fri, 14 Feb 2025 20:59:11 GMT",
             "content-type": "text/html; charset=utf-8",
             "content-length": "0",
             "connection": "keep-alive",
@@ -538,13 +1662,662 @@
             "access-control-allow-credentials": "true"
           },
           "data": "response content redacted",
-          "responseTime": 540
+          "responseTime": 133
         },
         "error": null,
-        "assertionResults": [],
+        "assertionResults": [
+          {
+            "uid": "9Bl7qG1wDDDQcST4fK0ne",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 500",
+            "rhsOperand": "500",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
         "testResults": [],
-        "runtime": 0.542525792,
-        "suitename": "Status Codes/get-status-500",
+        "runtime": 0.136768458,
+        "suitename": "Status Codes/get-500",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/delete-200.bru"
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "https://httpbin.org/status/200",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:11 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 134
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "Esqf6f9E8SkAmQQDJWnIz",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 200",
+            "rhsOperand": "200",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.136034291,
+        "suitename": "Status Codes/delete-200",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/delete-300.bru"
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "https://httpbin.org/status/300",
+          "headers": {}
+        },
+        "response": {
+          "status": 300,
+          "statusText": "MULTIPLE CHOICES",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:12 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 789
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "TkDYLXYZGkQBLYNNb_lh6",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 300",
+            "rhsOperand": "300",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.792913583,
+        "suitename": "Status Codes/delete-300",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/delete-400.bru"
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "https://httpbin.org/status/400",
+          "headers": {}
+        },
+        "response": {
+          "status": 400,
+          "statusText": "BAD REQUEST",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:12 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 138
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "_3tGvuGyPjkZSYTbXYi07",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 400",
+            "rhsOperand": "400",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.141678042,
+        "suitename": "Status Codes/delete-400",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/delete-500.bru"
+        },
+        "request": {
+          "method": "DELETE",
+          "url": "https://httpbin.org/status/500",
+          "headers": {}
+        },
+        "response": {
+          "status": 500,
+          "statusText": "INTERNAL SERVER ERROR",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:13 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 1224
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "rzrJwnbrpup0iXqOkFe41",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 500",
+            "rhsOperand": "500",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 1.22666525,
+        "suitename": "Status Codes/delete-500",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/patch-200.bru"
+        },
+        "request": {
+          "method": "PATCH",
+          "url": "https://httpbin.org/status/200",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:15 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 1131
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "2JYYR0M67ADHBhpdB_qT0",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 200",
+            "rhsOperand": "200",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 1.13387025,
+        "suitename": "Status Codes/patch-200",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/patch-300.bru"
+        },
+        "request": {
+          "method": "PATCH",
+          "url": "https://httpbin.org/status/300",
+          "headers": {}
+        },
+        "response": {
+          "status": 300,
+          "statusText": "MULTIPLE CHOICES",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:15 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 136
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "mc_xEs4u3jkzkgoghEUSD",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 300",
+            "rhsOperand": "300",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.140090375,
+        "suitename": "Status Codes/patch-300",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/patch-400.bru"
+        },
+        "request": {
+          "method": "PATCH",
+          "url": "https://httpbin.org/status/400",
+          "headers": {}
+        },
+        "response": {
+          "status": 400,
+          "statusText": "BAD REQUEST",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:15 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 835
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "TBNxP_HbgvPueBDftUCD4",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 400",
+            "rhsOperand": "400",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.838723542,
+        "suitename": "Status Codes/patch-400",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/patch-500.bru"
+        },
+        "request": {
+          "method": "PATCH",
+          "url": "https://httpbin.org/status/500",
+          "headers": {}
+        },
+        "response": {
+          "status": 500,
+          "statusText": "INTERNAL SERVER ERROR",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:16 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 135
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "oXkhd2KG126OnMBPyUtVe",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 500",
+            "rhsOperand": "500",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.137837042,
+        "suitename": "Status Codes/patch-500",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/post-200.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "https://httpbin.org/status/200",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:16 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 136
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "3WQv4t_5aHDvSmP7ZX-JL",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 200",
+            "rhsOperand": "200",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.138521041,
+        "suitename": "Status Codes/post-200",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/post-300.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "https://httpbin.org/status/300",
+          "headers": {}
+        },
+        "response": {
+          "status": 300,
+          "statusText": "MULTIPLE CHOICES",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:16 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 140
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "YSp-FC7IFbD01JCfbN8bu",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 300",
+            "rhsOperand": "300",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.141950209,
+        "suitename": "Status Codes/post-300",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/post-400.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "https://httpbin.org/status/400",
+          "headers": {}
+        },
+        "response": {
+          "status": 400,
+          "statusText": "BAD REQUEST",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:16 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 187
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "3rrA9_u6SzqyVq_YZXqow",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 400",
+            "rhsOperand": "400",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.190084875,
+        "suitename": "Status Codes/post-400",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/post-500.bru"
+        },
+        "request": {
+          "method": "POST",
+          "url": "https://httpbin.org/status/500",
+          "headers": {}
+        },
+        "response": {
+          "status": 500,
+          "statusText": "INTERNAL SERVER ERROR",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:17 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 1162
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "ZObOZhO83-JRqKEDaOYg1",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 500",
+            "rhsOperand": "500",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 1.166639042,
+        "suitename": "Status Codes/post-500",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/put-200.bru"
+        },
+        "request": {
+          "method": "PUT",
+          "url": "https://httpbin.org/status/200",
+          "headers": {}
+        },
+        "response": {
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:18 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 883
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "Xov8loN7oUWRdK4c88vXr",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 200",
+            "rhsOperand": "200",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.886464584,
+        "suitename": "Status Codes/put-200",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/put-300.bru"
+        },
+        "request": {
+          "method": "PUT",
+          "url": "https://httpbin.org/status/300",
+          "headers": {}
+        },
+        "response": {
+          "status": 300,
+          "statusText": "MULTIPLE CHOICES",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:18 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 163
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "jeCCcKNVaUoVqYgdxn-He",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 300",
+            "rhsOperand": "300",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.165756875,
+        "suitename": "Status Codes/put-300",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/put-400.bru"
+        },
+        "request": {
+          "method": "PUT",
+          "url": "https://httpbin.org/status/400",
+          "headers": {}
+        },
+        "response": {
+          "status": 400,
+          "statusText": "BAD REQUEST",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:20 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 1371
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "tqw0IG8YT4NGrGHJqyUu4",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 400",
+            "rhsOperand": "400",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 1.3740565,
+        "suitename": "Status Codes/put-400",
+        "iterationIndex": 0
+      },
+      {
+        "test": {
+          "filename": "Status Codes/put-500.bru"
+        },
+        "request": {
+          "method": "PUT",
+          "url": "https://httpbin.org/status/500",
+          "headers": {}
+        },
+        "response": {
+          "status": 500,
+          "statusText": "INTERNAL SERVER ERROR",
+          "headers": {
+            "date": "Fri, 14 Feb 2025 20:59:20 GMT",
+            "content-type": "text/html; charset=utf-8",
+            "content-length": "0",
+            "connection": "keep-alive",
+            "server": "gunicorn/19.9.0",
+            "access-control-allow-origin": "*",
+            "access-control-allow-credentials": "true"
+          },
+          "data": "response content redacted",
+          "responseTime": 136
+        },
+        "error": null,
+        "assertionResults": [
+          {
+            "uid": "Fg8MGmxNXTQF2ITM9tX2F",
+            "lhsExpr": "res.status",
+            "rhsExpr": "eq 500",
+            "rhsOperand": "500",
+            "operator": "eq",
+            "status": "pass"
+          }
+        ],
+        "testResults": [],
+        "runtime": 0.13762875,
+        "suitename": "Status Codes/put-500",
         "iterationIndex": 0
       }
     ]
