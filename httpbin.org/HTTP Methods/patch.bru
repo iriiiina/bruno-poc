@@ -1,0 +1,19 @@
+meta {
+  name: patch
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{URL}}/patch
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/HTTP_Methods/patch_patch](https://httpbin.org/#/HTTP_Methods/patch_patch)
+}

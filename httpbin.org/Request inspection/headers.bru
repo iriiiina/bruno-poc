@@ -1,0 +1,20 @@
+meta {
+  name: headers
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{URL}}/headers
+  body: none
+  auth: none
+}
+
+assert {
+  res.headers['content-type']: eq application/json
+  res.headers['date']: isNotEmpty
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Request_inspection/get_headers](https://httpbin.org/#/Request_inspection/get_headers)
+}

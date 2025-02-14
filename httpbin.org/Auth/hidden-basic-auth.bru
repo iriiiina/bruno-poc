@@ -1,0 +1,25 @@
+meta {
+  name: hidden-basic-auth
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{URL}}/hidden-basic-auth/{{USERNAME}}/{{PASSWORD}}
+  body: none
+  auth: basic
+}
+
+auth:basic {
+  username: {{USERNAME}}
+  password: {{PASSWORD}}
+}
+
+assert {
+  res.body.authenticated: isTruthy
+  res.body.user: eq {{USERNAME}}
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Auth/get_hidden_basic_auth__user___passwd_](https://httpbin.org/#/Auth/get_hidden_basic_auth__user___passwd_)
+}

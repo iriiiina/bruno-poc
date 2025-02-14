@@ -1,0 +1,19 @@
+meta {
+  name: get-500
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{URL}}/status/500
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 500
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Status_codes/get_status__codes_](https://httpbin.org/#/Status_codes/get_status__codes_)
+}

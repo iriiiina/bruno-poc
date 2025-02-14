@@ -1,0 +1,19 @@
+meta {
+  name: put
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{URL}}/put
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/HTTP_Methods/put_put](https://httpbin.org/#/HTTP_Methods/put_put)
+}

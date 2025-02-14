@@ -1,0 +1,19 @@
+meta {
+  name: patch-400
+  type: http
+  seq: 14
+}
+
+patch {
+  url: {{URL}}/status/400
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 400
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Status_codes/patch_status__codes_](https://httpbin.org/#/Status_codes/patch_status__codes_)
+}

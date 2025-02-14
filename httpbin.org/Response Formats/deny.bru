@@ -1,0 +1,20 @@
+meta {
+  name: deny
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{URL}}/deny
+  body: none
+  auth: none
+}
+
+assert {
+  res.headers['content-type']: eq text/plain
+  res.body: contains YOU SHOULDN'T BE HERE
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Response_formats/get_deny](https://httpbin.org/#/Response_formats/get_deny)
+}

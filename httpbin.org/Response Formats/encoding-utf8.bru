@@ -1,0 +1,19 @@
+meta {
+  name: encoding-utf8
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{URL}}/encoding/utf8
+  body: none
+  auth: none
+}
+
+assert {
+  res.headers['content-type']: eq text/html; charset=utf-8
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Response_formats/get_encoding_utf8](https://httpbin.org/#/Response_formats/get_encoding_utf8)
+}

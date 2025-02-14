@@ -1,0 +1,25 @@
+meta {
+  name: digest-auth
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{URL}}/digest-auth/auth/{{USERNAME}}/{{PASSWORD}}
+  body: none
+  auth: digest
+}
+
+auth:digest {
+  username: {{USERNAME}}
+  password: {{PASSWORD}}
+}
+
+assert {
+  res.body.authenticated: isTruthy
+  res.body.user: eq {{USERNAME}}
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Auth/get_digest_auth__qop___user___passwd_](https://httpbin.org/#/Auth/get_digest_auth__qop___user___passwd_)
+}

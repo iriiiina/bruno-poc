@@ -1,5 +1,5 @@
 meta {
-  name: get-bearer
+  name: bearer
   type: http
   seq: 1
 }
@@ -16,4 +16,8 @@ auth:bearer {
 
 assert {
   res.body.token: eq {{JWT}}
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Auth/get_bearer](https://httpbin.org/#/Auth/get_bearer)
 }

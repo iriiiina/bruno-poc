@@ -1,0 +1,19 @@
+meta {
+  name: post-200
+  type: http
+  seq: 17
+}
+
+post {
+  url: {{URL}}/status/200
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Status_codes/post_status__codes_](https://httpbin.org/#/Status_codes/post_status__codes_)
+}

@@ -1,0 +1,19 @@
+meta {
+  name: user-agent
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{URL}}/user-agent
+  body: none
+  auth: none
+}
+
+assert {
+  res.body['user-agent']: isNotEmpty
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Request_inspection/get_user_agent](https://httpbin.org/#/Request_inspection/get_user_agent)
+}

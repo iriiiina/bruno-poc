@@ -1,0 +1,23 @@
+meta {
+  name: html
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{URL}}/html
+  body: none
+  auth: none
+}
+
+params:query {
+  : 
+}
+
+assert {
+  res.headers['content-type']: eq 	text/html; charset=utf-8
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Response_formats/get_html](https://httpbin.org/#/Response_formats/get_html)
+}

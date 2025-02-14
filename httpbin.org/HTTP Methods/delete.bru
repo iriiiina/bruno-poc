@@ -1,0 +1,19 @@
+meta {
+  name: delete
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{URL}}/delete
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/HTTP_Methods/delete_delete](https://httpbin.org/#/HTTP_Methods/delete_delete)
+}

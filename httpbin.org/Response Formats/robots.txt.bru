@@ -1,0 +1,21 @@
+meta {
+  name: robots.txt
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{URL}}/robots.txt
+  body: none
+  auth: none
+}
+
+assert {
+  res.headers['content-type']: eq text/plain
+  res.body: contains User-agent: *
+  res.body: contains Disallow: /deny
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Response_formats/get_robots_txt](https://httpbin.org/#/Response_formats/get_robots_txt)
+}

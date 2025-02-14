@@ -1,0 +1,25 @@
+meta {
+  name: basic-auth
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{URL}}/basic-auth/{{USERNAME}}/{{PASSWORD}}
+  body: none
+  auth: basic
+}
+
+auth:basic {
+  username: {{USERNAME}}
+  password: {{PASSWORD}}
+}
+
+assert {
+  res.body.authenticated: isTruthy
+  res.body.user: eq {{USERNAME}}
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Auth/get_basic_auth__user___passwd_](https://httpbin.org/#/Auth/get_basic_auth__user___passwd_)
+}

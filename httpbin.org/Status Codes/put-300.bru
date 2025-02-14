@@ -1,0 +1,19 @@
+meta {
+  name: put-300
+  type: http
+  seq: 23
+}
+
+put {
+  url: {{URL}}/status/300
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 300
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Status_codes/put_status__codes_](https://httpbin.org/#/Status_codes/put_status__codes_)
+}

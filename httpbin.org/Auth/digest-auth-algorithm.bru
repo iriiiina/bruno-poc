@@ -1,0 +1,25 @@
+meta {
+  name: digest-auth-algorithm
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{URL}}/digest-auth/auth/{{USERNAME}}/{{PASSWORD}}/MD5
+  body: none
+  auth: digest
+}
+
+auth:digest {
+  username: {{USERNAME}}
+  password: {{PASSWORD}}
+}
+
+assert {
+  res.body.authenticated: isTruthy
+  res.body.user: eq {{USERNAME}}
+}
+
+docs {
+  API Specification: [https://httpbin.org/#/Auth/get_digest_auth__qop___user___passwd___algorithm_](https://httpbin.org/#/Auth/get_digest_auth__qop___user___passwd___algorithm_)
+}

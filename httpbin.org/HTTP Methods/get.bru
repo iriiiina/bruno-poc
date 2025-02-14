@@ -1,17 +1,17 @@
 meta {
-  name: get-delete
+  name: get
   type: http
-  seq: 1
+  seq: 6
 }
 
 get {
-  url: {{URL}}/delete
+  url: {{URL}}/get
   body: none
   auth: none
 }
 
 assert {
-  res.status: eq 405
+  res.status: eq 200
 }
 
 docs {
