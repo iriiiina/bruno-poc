@@ -8,15 +8,15 @@
 * Download and install [Bruno](https://www.usebruno.com/)
 * Clone this Git repository to your machine:
   ```shell
-  git clone git@gitlab.nortal.com:nortal-test-automation/bruno-poc.git
+  git clone https://github.com/iriiiina/bruno-poc.git
   ```
 * Open Bruno, click on the 'Open Collection' button on the start page, and open [httpbin.org](/httpbin.org/) folder in the cloned Git repo
 * You are now ready to run existing requests or add new ones to the collection!
 
 ## Run Tests In CLI
-To install `bru` tool see official documentation [Bruno CLI](https://docs.usebruno.com/bru-cli/overview).
+You need to install `bru` tool to run tests in CLI - see official documentation [Bruno CLI](https://docs.usebruno.com/bru-cli/overview) for details.
 
-Run following command in `httpbin.org/` folder:
+After `bru` is installed, run following command in `httpbin.org/` folder:
 ```shell
 bru run --env service
 ```
@@ -32,7 +32,7 @@ bru run --env service --reporter-html report.html
 ## Contributing
 * If you wish to commit your changes, please use [Pull Requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 * Follow the same folder structure and terminology as seen on the [https://httpbin.org](https://httpbin.org) page
-* Generate and commit the HTML report making all your changes
+* Generate and commit the HTML report after making all your changes
 * Follow best practices for [writing commit messages](https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53)
 
 ## Project Status
